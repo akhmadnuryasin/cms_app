@@ -1,19 +1,21 @@
 import * as React from "react";
 import {
   BookOpen,
-  Bot,
+  ChartCandlestick,
+  ClipboardMinus,
   Command,
+  CreditCard,
+  Database,
   Frame,
   LifeBuoy,
   Map,
   PieChart,
   Send,
-  Settings2,
-  SquareTerminal,
+  Settings,
+  UsersRound,
 } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
-import { NavSecondary } from "@/components/nav-secondary";
 import { NavUser } from "@/components/nav-user";
 import {
   Sidebar,
@@ -35,31 +37,27 @@ const data = {
     {
       title: "Manajemen Pengguna",
       url: "#",
-      icon: SquareTerminal,
+      icon: UsersRound,
       isActive: true,
       items: [
         {
           title: "Super Admin & Admin",
-          url: "#",
+          url: "/dashboard/users_admin",
         },
         {
-          title: "User & Doctor",
-          url: "#",
+          title: "Pengguna & Dokter",
+          url: "/dashboard/users_doctor",
         },
       ],
     },
     {
       title: "Manajemen Dokter",
       url: "#",
-      icon: Bot,
+      icon: ClipboardMinus,
       items: [
         {
-          title: "Spesialisasi",
-          url: "#",
-        },
-        {
-          title: "Jadwal",
-          url: "#",
+          title: "Jadwal Dokter",
+          url: "/dashboard/schedule",
         },
       ],
     },
@@ -70,79 +68,79 @@ const data = {
       items: [
         {
           title: "Daftar Reservasi",
-          url: "#",
+          url: "/dashboard/reservations",
         },
         {
           title: "Riwayat Reservasi",
-          url: "#",
+          url: "/dashboard/reservations_history",
         },
       ],
     },
     {
       title: "Master Data",
       url: "#",
-      icon: Settings2,
+      icon: Database,
       items: [
         {
           title: "Fasilitas Kesehatan",
-          url: "#",
+          url: "/dashboard/health_facilities",
         },
         {
           title: "Spesialisasi Dokter",
-          url: "#",
+          url: "/dashboard/specializations",
         },
         {
           title: "Jenis Layanan Kesehatan",
-          url: "#",
+          url: "/dashboard/health_services",
         },
       ],
     },
     {
       title: "Pembayaran",
       url: "#",
-      icon: Settings2,
+      icon: CreditCard,
       items: [
         {
           title: "Transaksi Pembayaran",
-          url: "#",
+          url: "/dashboard/payment_transactions",
         },
         {
           title: "Metode Pembayaran",
-          url: "#",
+          url: "/dashboard/payment_methods",
         },
       ],
     },
     {
       title: "Laporan & Analitik",
       url: "#",
-      icon: Settings2,
+      icon: ChartCandlestick,
       items: [
         {
           title: "Laporan Pengguna",
-          url: "#",
+          url: "/dashboard/user_report",
         },
         {
           title: "Laporan Reservasi",
-          url: "#",
+          url: "/dashboard/reservation_report",
         },
         {
           title: "Laporan Pembayaran",
-          url: "#",
+          url: "/dashboard/payment_report",
         },
       ],
     },
     {
       title: "Pengaturan",
       url: "#",
-      icon: Settings2,
+      icon: Settings,
       items: [
         {
           title: "Pengaturan Sistem",
-          url: "#",
+          url: "/dashboard/system_settings",
         },
         {
           title: "Hak Akses & Role",
-          url: "#",
+          url: "/dashboard/access_rights_and_controls",
         },
       ],
     },
@@ -186,11 +184,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <a href="#">
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                <div className="flex items-center justify-center rounded-lg aspect-square size-8 bg-sidebar-primary text-sidebar-primary-foreground">
                   <Command className="size-4" />
                 </div>
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">MEDPOINT CMS</span>
+                <div className="grid flex-1 text-sm leading-tight text-left">
+                  <span className="font-semibold truncate">MEDPOINT CMS</span>
                 </div>
               </a>
             </SidebarMenuButton>
@@ -199,7 +197,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
