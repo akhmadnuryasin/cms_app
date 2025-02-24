@@ -1,5 +1,5 @@
 function AccessRight() {
-  return <h2>Hak Akses & Role</h2>;
+  return <h2>Hak Akses</h2>;
 }
 
 export default AccessRight;

@@ -13,9 +13,14 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
 export default function Page() {
+  const location = useLocation();
+  const pathSegments = location.pathname
+    .split("/")
+    .filter((segment) => segment !== "");
+
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -24,19 +29,40 @@ export default function Page() {
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
             <Separator orientation="vertical" className="h-4 mr-2" />
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">
-                    Building Your Application
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator className="hidden md:block" />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
+            {pathSegments.length > 0 && (
+              <Breadcrumb>
+                <BreadcrumbList className="flex items-center">
+                  {pathSegments.map((segment, index) => {
+                    const isLast = index === pathSegments.length - 1;
+                    const path = `/${pathSegments
+                      .slice(0, index + 1)
+                      .join("/")}`;
+                    const formattedSegment = segment
+                      .replace(/-/g, " ") // Ganti "-" dengan spasi
+                      .replace(/\b\w/g, (char) => char.toUpperCase()); // Huruf pertama kapital
+
+                    return (
+                      <div key={path} className="flex items-center">
+                        {index > 0 && <BreadcrumbSeparator className="mx-2" />}{" "}
+                        {/* Tambahkan separator hanya setelah elemen pertama */}
+                        <BreadcrumbItem>
+                          {isLast ? (
+                            <BreadcrumbPage>{formattedSegment}</BreadcrumbPage>
+                          ) : (
+                            <BreadcrumbLink
+                              href={path}
+                              className="text-gray-500"
+                            >
+                              {formattedSegment}
+                            </BreadcrumbLink>
+                          )}
+                        </BreadcrumbItem>
+                      </div>
+                    );
+                  })}
+                </BreadcrumbList>
+              </Breadcrumb>
+            )}
           </div>
         </header>
         <div className="flex flex-col flex-1 gap-4 p-4 pt-0">

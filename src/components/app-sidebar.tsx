@@ -6,15 +6,9 @@ import {
   Command,
   CreditCard,
   Database,
-  Frame,
-  LifeBuoy,
-  Map,
-  PieChart,
-  Send,
   Settings,
   UsersRound,
 } from "lucide-react";
-
 import { NavMain } from "@/components/nav-main";
 import { NavUser } from "@/components/nav-user";
 import {
@@ -41,12 +35,20 @@ const data = {
       isActive: true,
       items: [
         {
-          title: "Super Admin & Admin",
-          url: "/dashboard/users_admin",
+          title: "Super Admin",
+          url: "/dashboard/manajemen-pengguna/super-admin",
         },
         {
-          title: "Pengguna & Dokter",
-          url: "/dashboard/users_doctor",
+          title: "Admin",
+          url: "/dashboard/manajemen-pengguna/admin",
+        },
+        {
+          title: "Dokter",
+          url: "/dashboard/manajemen-pengguna/dokter",
+        },
+        {
+          title: "User",
+          url: "/dashboard/manajemen-pengguna/user",
         },
       ],
     },
@@ -57,7 +59,7 @@ const data = {
       items: [
         {
           title: "Jadwal Dokter",
-          url: "/dashboard/schedule",
+          url: "/dashboard/managemen-dokter/jadwal-dokter",
         },
       ],
     },
@@ -68,11 +70,11 @@ const data = {
       items: [
         {
           title: "Daftar Reservasi",
-          url: "/dashboard/reservations",
+          url: "/dashboard/reservasi/daftar-reservasi",
         },
         {
           title: "Riwayat Reservasi",
-          url: "/dashboard/reservations_history",
+          url: "/dashboard/reservasi/riwayat-reservasi",
         },
       ],
     },
@@ -83,15 +85,15 @@ const data = {
       items: [
         {
           title: "Fasilitas Kesehatan",
-          url: "/dashboard/health_facilities",
+          url: "/dashboard/master-data/fasilitas-kesehatan",
         },
         {
           title: "Spesialisasi Dokter",
-          url: "/dashboard/specializations",
+          url: "/dashboard/master-data/spesialisasi-dokter",
         },
         {
           title: "Jenis Layanan Kesehatan",
-          url: "/dashboard/health_services",
+          url: "/dashboard/master-data/jenis-layanan-kesehatan",
         },
       ],
     },
@@ -102,30 +104,30 @@ const data = {
       items: [
         {
           title: "Transaksi Pembayaran",
-          url: "/dashboard/payment_transactions",
+          url: "/dashboard/pembayaran/transaksi-pembayaran",
         },
         {
           title: "Metode Pembayaran",
-          url: "/dashboard/payment_methods",
+          url: "/dashboard/pembayaran/metode-pembayaran",
         },
       ],
     },
     {
-      title: "Laporan & Analitik",
+      title: "Laporan",
       url: "#",
       icon: ChartCandlestick,
       items: [
         {
           title: "Laporan Pengguna",
-          url: "/dashboard/user_report",
+          url: "/dashboard/laporan/laporan-pengguna",
         },
         {
           title: "Laporan Reservasi",
-          url: "/dashboard/reservation_report",
+          url: "/dashboard/laporan/laporan-reservasi",
         },
         {
           title: "Laporan Pembayaran",
-          url: "/dashboard/payment_report",
+          url: "/dashboard/laporan/laporan-pembayaran",
         },
       ],
     },
@@ -136,42 +138,13 @@ const data = {
       items: [
         {
           title: "Pengaturan Sistem",
-          url: "/dashboard/system_settings",
+          url: "/dashboard/pengaturan/pengaturan-sistem",
         },
         {
           title: "Hak Akses & Role",
-          url: "/dashboard/access_rights_and_controls",
+          url: "/dashboard/pengaturan/hak-akses",
         },
       ],
-    },
-  ],
-  navSecondary: [
-    {
-      title: "Support",
-      url: "#",
-      icon: LifeBuoy,
-    },
-    {
-      title: "Feedback",
-      url: "#",
-      icon: Send,
-    },
-  ],
-  projects: [
-    {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
     },
   ],
 };
@@ -199,7 +172,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavMain items={data.navMain} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser />
       </SidebarFooter>
     </Sidebar>
   );
