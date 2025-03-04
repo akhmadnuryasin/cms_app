@@ -22,7 +22,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, loading }) => {
       className="p-0 mt-6 mb-0 space-y-4 rounded-lg"
     >
       <div className="mb-8">
-        <h1 className="mb-2 text-3xl font-bold">Selamat Datang V2.0.0</h1>
+        <h1 className="mb-2 text-3xl font-bold">Selamat Datang</h1>
         <p className="text-lg font-light text-slate-500">
           Masuk dan kelola dashboard Mediverse anda sekarang
         </p>
